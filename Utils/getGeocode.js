@@ -2,7 +2,7 @@ const requests = require('postman-request')
 const CONSTANTS = require('../Data/CONSTANTS')
 const geoCodeConstants = CONSTANTS.geoCodeConstants
 
-const geocode = (address, callback) => {
+const getGeocode = (address, callback) => {
     const url = geoCodeConstants.baseurl + encodeURIComponent(address) + '.json?' + geoCodeConstants.api + '&limit1'
     console.log(url)
     requests({url: url, json: true}, (error, response) => {
@@ -30,4 +30,4 @@ const geocode = (address, callback) => {
 }
 
 
-module.exports = geocode
+module.exports = getGeocode

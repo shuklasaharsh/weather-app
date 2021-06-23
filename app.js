@@ -2,7 +2,7 @@
 // Node packages
 const fs = require('fs')
 // Personal Files
-const geocode = require('./Utils/geocode')
+const geocode = require('./Utils/getGeocode')
 const getWeather = require('./Utils/getWeather')
 // Program
 
