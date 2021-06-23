@@ -1,12 +1,19 @@
-const api = require('./Data/CONSTANTS')
+// Dev Dependencies
+// Node packages
+const fs = require('fs')
+// Personal Files
+const geocode = require('./Utils/geocode')
+const getWeather = require('./Utils/getWeather')
+// Program
 
-console.log("Starting")
 
-setTimeout(() => {
-    console.log('2 Second timer')
-}, 2000)
 
-setTimeout(()=> {
-    console.log('0 Second timer')
-},0)
-console.log("Stopping")
+geocode('Boston', (error, response)=>{
+    const lat = response.latitude
+    const long = response.longitude
+    const address = lat+','+long
+    getWeather(address, (error, response)=> {
+        console.log('error: ', error)
+        console.log('response: ', response)
+    })
+})
