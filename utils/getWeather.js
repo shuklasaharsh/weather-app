@@ -1,4 +1,4 @@
-const CONSTANTS = require('../Data/CONSTANTS')
+const CONSTANTS = require('../data/CONSTANTS')
 const requests = require('postman-request')
 //
 // Goal: Create a reusable function for getting the forecast
@@ -12,24 +12,25 @@ const requests = require('postman-request')
 
 const weatherConstants = CONSTANTS.weatherConstants
 
-const getWeatherData = (address, callback) => {
-    const url = weatherConstants.baseurl + weatherConstants.api + '&query=' + encodeURIComponent(address) + '&units=m'
+const getWeatherData = ({latitude, longitude} = {}, callback) => {
+    let query = latitude + ',' + longitude
+    const url = weatherConstants.baseurl + weatherConstants.api + '&query=' + (query) + '&units=m'
     console.log(url)
-    requests({url: url, json: true}, (error, response)=> {
+    requests({url: url, json: true}, (error, {body}={})=> {
         try {
             const data = {
-                temperature: response.body.current.temperature,
-                feelsLike: response.body.current.feelslike,
-                precipitation: response.body.current.precip,
-                currentTime: response.body.current.observation_time
+                temperature: body.current.temperature,
+                feelsLike: body.current.feelslike,
+                precipitation: body.current.precip,
+                currentTime: body.current.observation_time
             }
             callback(undefined, data)
         } catch (e) {
             let e2 = e.toString()
             if (error) {
                 callback(error, undefined)
-            } else if (response.error) {
-                e2 = response.error
+            } else if (body.error) {
+                e2 = body.error
                 callback(e2, undefined)
             }
         }

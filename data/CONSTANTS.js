@@ -4,11 +4,19 @@ const urlGeocoding = 'https://api.mapbox.com/geocoding/v5/mapbox.places/Los%20An
 
 const geoCodeConstants = {
     baseurl: 'https://api.mapbox.com/geocoding/v5/mapbox.places/',
-    api: 'access_token=pk.eyJ1Ijoic2h1a2xhc2FoYXJzaCIsImEiOiJja3EyZHYwMzcwMmtqMm5vNnBuZHlhand4In0.vDk328o-nkbMbgXZP5nwVA'
+    api: 'access_token=pk.eyJ1Ijoic2h1a2xhc2FoYXJzaCIsImEiOiJja3EyZHYwMzcwMmtqMm5vNnBuZHlhand4In0.vDk328o-nkbMbgXZP5nwVA',
+    format: {
+        example_url:urlGeocoding,
+        break_format: "Protocol://api.mapbox.com/#ServicenName#/v5/#ServiceType#/#LocationName.json?access_token=#API#"
+    }
 }
 const weatherConstants = {
     baseurl: 'http://api.weatherstack.com/current',
-    api: '?access_key=d0cf7eb36f9816c1f844fa52f738970a'
+    api: '?access_key=d0cf7eb36f9816c1f844fa52f738970a',
+    format: {
+        example_url: urlWeather,
+        break_format: "Protocol://api.weatherstack.com/#Service#?access_key=#API#&query=#Query#"
+    }
 }
 module.exports = {
     api,
